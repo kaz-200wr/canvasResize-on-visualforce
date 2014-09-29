@@ -15,12 +15,12 @@ Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
 <style>
 	body{
 		background: #000 url({!$Resource.canvasResize_bg}) repeat-y fixed left top;  
-		background-size:100%;
+		background-size:100% 100%;
 	}
 	.sitename{
 		text-align: center;
 		margin: 0;
-		background-color: black;
+		background-color: rgba(63, 43, 54, 0.9);
 		font-size: 16px;
 		color: white;
 		padding: 7px;
@@ -35,7 +35,7 @@ Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
 	.form-group{
 		background: rgba(0, 0, 0, 0.7);
 		padding: 20px;
-		border: 5px solid rgba(220, 220, 220, 0.9);
+		border: 2px solid rgba(96, 55, 62, 0.9);
 		background: rgba(0, 0, 0, 0.7);
 		color: white;
 		margin: 20px;
@@ -52,6 +52,13 @@ Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
 	#photoarea{
 		margin: 15px auto;
 		text-align: center;
+	}
+	.btn-sakura{
+		background-color: rgba(254,223,225,0.9);
+	}
+	.btn-aotake{
+		background-color: rgba(0, 137, 108, 0.9);
+		border-color: rgba(0, 137, 108, 0.9);
 	}
 </style>
 <body>
@@ -92,12 +99,12 @@ Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
 					<div id="photoarea">
 						<div>
 							<input name="photo" type="file" style="display:none" />
-							<p id="photobutton" class="btn btn-lg btn-info">
+							<p id="photobutton" class="btn btn-lg btn-aotake">
 								Business Card
 							</p>
 						</div>
 					</div>
-					<button id="next" type="button" class="btn btn-default btn-lg btn-block">Next</button>
+					<button id="next" type="button" class="btn btn-sakura btn-lg btn-block">Next</button>
 				</div>
 			</div>
 		</div>
@@ -131,7 +138,7 @@ Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
 			</div>
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<button id="submit" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+					<button id="submit" type="button" class="btn btn-sakura btn-lg btn-block">Submit</button>
 				</div>
 			</div>
 		</div>
