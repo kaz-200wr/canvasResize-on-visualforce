@@ -1,0 +1,313 @@
+<!-- 
+author: Kazuhiko Imamura
+
+The MIT License
+Copyright (c) 2014 Kazuhiko Imamura https://github.com/kazu-200WR
+ -->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" doctype="html-5.0" applyBodyTag="false">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.4.1/less.min.js"></script>
+<style>
+	body{
+		background: #000 url({!$Resource.canvasResize_bg}) repeat-y fixed left top;  
+		background-size:100%;
+	}
+	.sitename{
+		text-align: center;
+		margin: 0;
+		background-color: black;
+		font-size: 16px;
+		color: white;
+		padding: 7px;
+	}
+	.sitename a{
+		font-size: 1.6em;
+		color: inherit;
+	}
+	.container{
+		padding: 0;
+	}
+	.form-group{
+		background: rgba(0, 0, 0, 0.7);
+		padding: 20px;
+		border: 5px solid rgba(220, 220, 220, 0.9);
+		background: rgba(0, 0, 0, 0.7);
+		color: white;
+		margin: 20px;
+		font-size: 18px;
+	}
+	.btn-lg, .btn-group-lg>.btn{margin-bottom:10px;}
+	.q-radio-button{
+		text-align:center;
+	}
+	.btn-default:active, .btn-default.active {
+		background-color: #969696;
+		color: black;
+	}
+	#photoarea{
+		margin: 15px auto;
+		text-align: center;
+	}
+</style>
+<body>
+	<div class="sitename">
+		<div class="container">
+			<a href="JavaScript:location.href = '{!$Page.EventSurveyInput}'" id="title">Survey</a>
+		</div>
+	</div>
+
+	<form role="form">
+		<div id="page1" class="container">
+			<div class="row clearfix">
+				<div class="col-md-6 column">
+					<div class="form-group">
+						<label for="inputFirstName">{!$ObjectType.Lead.fields.FirstName.Label}</label><input type="text" class="form-control" id="inputFirstName" />
+					</div>
+					<div class="form-group">
+						<label for="inputLastName">{!$ObjectType.Lead.fields.LastName.Label}</label><input type="text" class="form-control" id="inputLastName" />
+					</div>
+					<div class="form-group">
+						<label for="inputHospitalName">{!$ObjectType.Lead.fields.Company.Label}</label><input type="text" class="form-control" id="inputHospitalName" />
+					</div>
+				</div>
+				<div class="col-md-6 column">
+					<div class="form-group">
+						<label for="inputTel">{!$ObjectType.Lead.fields.Phone.Label}</label><input type="tel" class="form-control" id="inputTel" />
+					</div>
+					<div class="form-group">
+						<label for="inputMobilePhone">{!$ObjectType.Lead.fields.MobilePhone.Label}</label><input type="tel" class="form-control" id="inputMobilePhone" />
+					</div>
+					<div class="form-group">
+						<label for="inputEmail">{!$ObjectType.Lead.fields.Email.Label}</label><input type="email" class="form-control" id="inputEmail" />
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div id="photoarea">
+						<div>
+							<input name="photo" type="file" style="display:none" />
+							<p id="photobutton" class="btn btn-lg btn-info">
+								Business Card
+							</p>
+						</div>
+					</div>
+					<button id="next" type="button" class="btn btn-default btn-lg btn-block">Next</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="page2" class="container" style="display:none">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="form-group">
+						<label for="q1">1.{!$ObjectType.EventSurvey__c.fields.Question1__c.Label}</label><br />
+						<div id="q1" class="btn-group q-radio-button" data-toggle="buttons-radio">
+							<button type="button" class="btn btn-default btn-lg">Very Satisfied</button>
+							<button type="button" class="btn btn-default btn-lg">Satisfied</button>
+							<button type="button" class="btn btn-default btn-lg">Neutral</button>
+							<button type="button" class="btn btn-default btn-lg">Dissatisfied</button>
+							<button type="button" class="btn btn-default btn-lg">Very Dissatisfied</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="q2">2.{!$ObjectType.EventSurvey__c.fields.Question2__c.Label}</label><br />
+						<div id="q2" class="btn-group q-radio-button" data-toggle="buttons-radio">
+							<button type="button" class="btn btn-default btn-lg">sales cloud</button>
+							<button type="button" class="btn btn-default btn-lg">service cloud</button>
+							<button type="button" class="btn btn-default btn-lg">exacttarget marketing cloud</button>
+							<button type="button" class="btn btn-default btn-lg">platform</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="comment">3.{!$ObjectType.EventSurvey__c.fields.Question3__c.Label}</label><textarea id="comment" class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<button id="submit" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div id="page3" class="container" style="display:none">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="form-group">
+					Thank you!
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="{!URLFOR($Resource.canvasResize, 'jquery.exif.js')}"></script>
+<script src="{!URLFOR($Resource.canvasResize, 'jquery.canvasResize.js')}"></script>
+<script src="{!URLFOR($Resource.canvasResize, 'canvasResize.js')}"></script>
+
+<script>
+ var __sfdcSessionId = '{!GETSESSIONID()}';
+</script>
+<script src="../../soap/ajax/31.0/connection.js"></script>
+<apex:remoteObjects >
+	<apex:remoteObjectModel name="Lead" fields="Id, FirstName, LastName, Email, Phone, MobilePhone,LeadSource, Company"/>
+	<apex:remoteObjectModel name="EventSurvey__c" fields="Id,Question1__c,Question2__c,Question3__c,Lead__c"/>
+	<apex:remoteObjectModel name="Attachment" fields="Id, ParentId, Name, ContentType,Body"/> 
+</apex:remoteObjects>
+
+<script>
+	var answer1, answer2, LeadId, LeadLastname;
+	$j=jQuery.noConflict();
+	$j(function() {
+		answer1 = answer2 = LeadId = LeadLastname = "";
+
+		$j('#q1 button').on('click', function(){
+			answer1 = $j(this).text();
+			$j('#q1 button').not($j(this)).removeClass('active');
+		});
+
+		$j('#q2 button').on('click', function(){
+			var answer2array = [$j(this).text()];
+			$j(this).parent().children('.active').each(function(){
+				answer2array.push($j(this).text());
+			});
+			answer2 = answer2array.join(";");
+		});
+
+		$j('#next').on('click', function(){
+			$j('#page1').hide();
+			$j('#page2').show();
+		});
+
+		$j('#submit').on('click', function(){
+			var newLead = new SObjectModel.Lead();
+
+			if($j('#inputLastName').val() != ''){
+				newLead.set('LastName', $j('#inputLastName').val());
+				LeadLastname = $j('#inputLastName').val();
+			}else{
+				newLead.set('LastName', 'unknown');
+				LeadLastname = 'unknown';
+			}
+			if($j('#inputHospitalName').val() != ''){
+				newLead.set('Company', $j('#inputHospitalName').val());
+			}else{
+				newLead.set('Company', 'unknown');
+			}
+
+			newLead.set('FirstName', $j('#inputFirstName').val());
+			newLead.set('Phone', $j('#inputTel').val());
+			newLead.set('Email', $j('#inputEmail').val());
+			newLead.set('MobilePhone', $j('#inputMobilePhone').val());
+			newLead.set('LeadSource', 'Survey');
+
+			newLead.create(function(error, result, event){
+				if(error === null){
+					console.log('Lead data create Success!');
+					console.log(result);
+					LeadId = result[0];
+
+					if(!$j("#photoarea").children().children("img").attr('src')){
+						console.log('no picture attached');
+					}else{
+						var dataParams = $j("#photoarea").children().children("img").attr('src').split(/[:;,]/);
+						var contentType = dataParams[1];
+						var dataContent = dataParams[3];
+
+						var newAttachment = new sforce.SObject('Attachment');
+						newAttachment.ParentId = LeadId;
+						newAttachment.Name = 'BUSINESS CARD(' + LeadLastname + ')';
+						newAttachment.Body = dataContent;
+						newAttachment.ContentType = contentType;
+						var res = sforce.connection.create([newAttachment]);
+					}
+
+					var newEventSurvey = new SObjectModel.EventSurvey__c();
+					newEventSurvey.set('Lead__c', LeadId);
+					newEventSurvey.set('Question1__c', answer1);
+					newEventSurvey.set('Question2__c', answer2);
+					newEventSurvey.set('Question3__c', $j("#comment").val());
+					newEventSurvey.create(function(error, result, event){
+						if(error === null){
+							console.log('EventSurvey data create Success!');
+							console.log(result);
+							$j('#page2').hide();
+							$j('#page3').show();
+						}else{
+							console.log(error);
+						}
+					});
+				}else{
+					console.log(error);
+				}
+			});
+		});
+
+		// Photo resize
+		$j('#photobutton').on('click', function(){
+			$j('input[name=photo]').trigger('click');
+		});
+
+		$j('input[name=photo]').change(function(e) {
+			var file = e.target.files[0];
+
+      // RESET
+      $j('#photoarea p span').css('width', 0 + "%").html('');
+      $j('#photoarea img, #photoarea canvas, #sep').remove();
+      console.log(e.target.files[0]);
+
+      // CANVAS RESIZING
+      $j.canvasResize(file, {
+      	width: 400,
+      	height: 0,
+      	crop: false,
+      	quality: 80,
+        //rotate: 90,
+        callback: function(data, width, height) {
+          // SHOW AS AN IMAGE
+          // =================================================
+          $j('<img>').load(function() {
+          	$j(this).css({
+          		'margin': '10px auto',
+          		'width': width,
+          		'height': height
+          	}).appendTo('#photoarea div');
+          }).attr('src', data);
+
+          // Create a new formdata
+          var fd = new FormData();
+          // Add file data
+          var f = $j.canvasResize('dataURLtoBlob', data);
+          f.name = file.name;
+
+          $j("<br id=\"sep\" />").insertAfter($j('#photobutton'));
+          fd.append($j('#photoarea input').attr('name'), f);
+
+          console.log(data);
+          console.log(fd);
+        }
+      });
+    });
+	});
+</script>
+<!--
+"canvasResize" is under The MIT License
+
+Copyright (c) 2012 goker.cebeci, http://gokercebeci.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+It requires binaryajax.js and exif.js (or jQuery EXIF) to work which is also under the MPL License
+-->
+</apex:page>

@@ -1,0 +1,5 @@
+.DS_Store
+config/
+*.sublime-project
+*.sublime-settings
+*.sublime-workspace
