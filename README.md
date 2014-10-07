@@ -1,7 +1,9 @@
 canvasResize-on-visualforce
 ===========================
-Visualforce page sample page that captures Lead information, Image of Business Card and Survey.
-This sample is using The canvasResize to resize the Image of Lead's Business Card.
+Visualforce sample page for the questionnaire.
+Save Lead information, Photo of Business Card and Answer of questionnaire to the salesforce.
+
+This sample is using The canvasResize to resize the photo of Lead's Business Card.
 
 ---
 ![iPad image1](img/iPad_page1.png)
